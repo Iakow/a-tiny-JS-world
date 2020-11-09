@@ -1,31 +1,61 @@
-/* Refer to https://github.com/OleksiyRudenko/a-tiny-JS-world for the task details
-   Complete the below for code reviewers' convenience:
+const man = {
+   species: 'human',
+   name: 'Donald',
+   gender: 'male',
+   legs: 2,
+   hands: 2,
+   saying: 'Aloha!',
+};
 
-   Code repository: _put repo URL here_
-   Web app: _put project's github pages URL here_
-   */
+const woman = {
+   species: 'human',
+   name: 'Eva',
+   gender: 'female',
+   legs: 2,
+   hands: 2,
+   saying: 'Hello',
+};
 
-// ======== OBJECTS DEFINITIONS ========
-// Define your objects here
+const cat = {
+   species: 'cat',
+   name: 'Murka',
+   gender: 'female',
+   legs: 4,
+   hands: 0,
+   saying: 'Meow...',
+};
 
+const dog = {
+   species: 'dog',
+   name: 'Gektor',
+   gender: 'male',
+   legs: 4,
+   hands: 0,
+   saying: 'WOFFF!',
+};
 
-// ======== OUTPUT ========
-/* Use print(message) for output.
-   Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
+const catWoman = {
+   species: 'humacat',
+   name: 'Akrum',
+   gender: 'female',
+   legs: 2,
+   hands: 2,
+   saying: cat.saying,
+};
 
-   Message can contain HTML markup. You may also tweak index.html and/or styles.css.
-   However, please, REFRAIN from improving visuals at least until your code is reviewed
-   so code reviewers might focus on a single file that is index.js.
-   */
+man.frends = [woman, dog];
+woman.frends = [man, cat];
+dog.frends = [man, woman, catWoman, cat];
+catWoman.frends = [cat, woman];
 
-/* Print examples:
-   print('ABC');
-   print('<strong>ABC</strong>');
-   print('<strong>ABC</strong>', 'div');
+[man, woman, cat, dog, catWoman].forEach((inhabitant) => {
+   const inhabitantProps = Object.values(inhabitant).map(prop => {
+      if (Array.isArray(prop)) {
+         return prop.map(frend => frend.name).join(', ')
+      } else {
+         return prop;
+      }
+   })
 
-   print('human; John; male; 2; 2; Hello world!; Rex, Tom, Jenny');
-   print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
-   print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
-   */
-
-
+   print(inhabitantProps.join('; '))
+});
