@@ -43,19 +43,22 @@ const catWoman = {
    saying: cat.saying,
 };
 
-man.frends = [woman, dog];
-woman.frends = [man, cat];
-dog.frends = [man, woman, catWoman, cat];
-catWoman.frends = [cat, woman];
+man.friends = [woman, dog];
+woman.friends = [man, cat];
+dog.friends = [man, woman, catWoman, cat];
+catWoman.friends = [cat, woman];
 
-[man, woman, cat, dog, catWoman].forEach((inhabitant) => {
-   const inhabitantProps = Object.values(inhabitant).map(prop => {
-      if (Array.isArray(prop)) {
-         return prop.map(frend => frend.name).join(', ')
+
+const printInhabitant = (obj) => {
+   const inhabitantProps = Object.keys(obj).map((key) => {
+      if (key === 'friends') {
+         return obj.friends.map((friend) => friend.name).join(', ')
       } else {
-         return prop;
+         return obj[key];
       }
    })
 
    print(inhabitantProps.join('; '))
-});
+}
+
+[man, woman, cat, dog, catWoman].forEach(printInhabitant);
