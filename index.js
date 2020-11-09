@@ -48,17 +48,16 @@ woman.friends = [man, cat];
 dog.friends = [man, woman, catWoman, cat];
 catWoman.friends = [cat, woman];
 
-
-const printInhabitant = (obj) => {
-   const inhabitantProps = Object.keys(obj).map((key) => {
+const printInhabitant = obj => {
+   const props = Object.keys(obj).map(key => {
       if (key === 'friends') {
-         return obj.friends.map((friend) => friend.name).join(', ')
-      } else {
-         return obj[key];
+         return obj[key].map(friend => friend.name).join(', ');
       }
+
+      return obj[key];
    })
 
-   print(inhabitantProps.join('; '))
+   print(props.join('; '));
 }
 
 [man, woman, cat, dog, catWoman].forEach(printInhabitant);
